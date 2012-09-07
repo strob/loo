@@ -2,3 +2,7 @@ meditation on the loop
 
 loo.py - numm video looper implementation
 loo.c  - c/jack in-development audio looper implementation
+
+== compile
+
+gcc -o loo loo.c -ljack
