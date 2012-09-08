@@ -64,7 +64,7 @@ static int process(jack_nframes_t nframes, void *arg) {
   int cur_loop = nloops - 1;
 
   /* The first loop can be much longer than others. */
-  jack_nframes_t loop_nframes = cur_loop ? recording_length : MAX_RECORDING_LENGTH;
+  jack_nframes_t loop_nframes = (cur_loop || (recording_length && !is_recording)) ? recording_length : MAX_RECORDING_LENGTH;
 
   if(is_recording) {
     jack_default_audio_sample_t* input = jack_port_get_buffer (input_port, nframes);
@@ -82,7 +82,7 @@ static int process(jack_nframes_t nframes, void *arg) {
 
   /* playback all of the loops */
   int i;
-  for(i=0; i<cur_loop; ++i) {
+  for(i=0; i<nloops; ++i) {
     jack_default_audio_sample_t* output = jack_port_get_buffer(output_ports[i], nframes);
 
     if(cur_frame + nframes <= loop_nframes) {
