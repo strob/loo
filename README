@@ -6,3 +6,10 @@ loo.c  - c/jack in-development audio looper implementation
 == compile
 
 gcc -o loo loo.c -ljack
+
+== usage
+
+./loo
+
+[enter] - toggle recording on loop
+n + [enter] - start working on a new loop
