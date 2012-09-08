@@ -96,7 +96,7 @@ static int process(jack_nframes_t nframes, void *arg) {
   }
 
   cur_frame += nframes;
-  if(cur_frame > loop_nframes) {
+  if(cur_frame >= loop_nframes) {
     cur_frame = cur_frame % loop_nframes;
     fprintf(stdout, "loop\n");
   }
